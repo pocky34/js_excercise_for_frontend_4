@@ -18,7 +18,7 @@
   //   - テキストボックスの中を空にする
   addButtonElement.addEventListener('click', (event) => {
     const newTodo = inputTodoBoxElement.value;
-    if(newTodo == ''){
+    if(newTodo === ''){
       return;
     }
 
@@ -39,17 +39,16 @@
 
     todos.forEach((todo, index) => {
       const newLiElement = document.createElement('li');
-      newLiElement.textContent = (index+1) + ' : ' + todo;
+      newLiElement.textContent = (index + 1) + ' : ' + todo;
       ulElement.appendChild(newLiElement);
 
       const newDeleteButtonElement = document.createElement('button');
       newDeleteButtonElement.textContent = '削除';
-      newDeleteButtonElement.setAttribute('todo_index', index);
       newDeleteButtonElement.addEventListener('click', (event) => {
-        onDeleteButtonClicked(event.target.getAttribute('todo_index'));
-      })
+        onDeleteButtonClicked(index);
+      });
       newLiElement.appendChild(newDeleteButtonElement);
-    })
+    });
   }
 
 
